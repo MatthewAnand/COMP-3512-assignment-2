@@ -1,0 +1,18 @@
+*{
+    background-color:  #4494fc;
+}
+
+header{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+#artists{
+    background-color:  #a7a4a4;
+    margin-top: 2cm;
+    margin-right: 10cm;
+}
+
+#genres{
+    background-color:  #a7a4a4;
+}
