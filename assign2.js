@@ -12,18 +12,7 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
    use built-in Live Preview.
 */
 const artistArray = JSON.parse(artistString);
-const genreArray = JSON.parse(genreString);
 
-document.write(`<select class="ui fluid dropdown" name="artists" id ="artists">`);
-document.write(`<option value='0'> </option>`);
 for(let a of artistArray){
    document.write("<option value='"+a.id+"'>"+a.name+"</option>");
 }
-document.write("</select>")
-
-document.write(`<select class="ui fluid dropdown" name="genres" id ="genres">`);
-document.write(`<option value='0'> </option>`);
-for(let a of genreArray){
-   document.write("<option value='"+a.id+"'>"+a.name+"</option>");
-}
-document.write("</select>")
