@@ -23,8 +23,8 @@ for(let a of artistArray){
    option.textContent=a.name;
    option.dataset.id=a.id;
    artists.appendChild(option);
-   option.addEventListener("click", populateArtist);
 }
+artists.addEventListener("change", populateArtist);
 for(let a of genreArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -32,14 +32,14 @@ for(let a of genreArray){
    option.dataset.id=a.id;
    genres.appendChild(option);
 }
+genres.addEventListener("change", populateGenre);
 }
 );
 
-let populateArtist = function(e){
+function populateArtist(e){
    const artist = e.target;
-   const artistId = artist.dataset.id;
    for (let song of songArray){
-      if(song.artist.id == artistId){
+      if(song.artist.id == artist.value){
          table = document.querySelector("#abc");
          row = document.createElement("tr")
          titleTable = document.createElement("td");
@@ -49,13 +49,41 @@ let populateArtist = function(e){
          artistTable = document.createElement("td");
          artistTable.textContent = song.artist.name;
          yearTable = document.createElement("td");
-         yearTable.textContent = song.name;
+         yearTable.textContent = song.year;
          popularityTable = document.createElement("td");
-         popularityTable.textContent = song.popularity;
+         popularityTable.textContent = song.details.popularity;
          row.appendChild(titleTable);
-         row.appendChild(genreTable);
          row.appendChild(artistTable);
          row.appendChild(yearTable);
+         row.appendChild(genreTable);
+         row.appendChild(popularityTable);
+         table.appendChild(row);
+
+      }
+   }
+}
+
+function populateGenre(e){
+   const genre = e.target;
+   for (let song of songArray){
+      if(song.genre.id == genre.value){
+         console.log(genre.value)
+         table = document.querySelector("#abc");
+         row = document.createElement("tr")
+         titleTable = document.createElement("td");
+         titleTable.textContent=song.title;
+         genreTable = document.createElement("td");
+         genreTable.textContent = song.genre.name;
+         artistTable = document.createElement("td");
+         artistTable.textContent = song.artist.name;
+         yearTable = document.createElement("td");
+         yearTable.textContent = song.year;
+         popularityTable = document.createElement("td");
+         popularityTable.textContent = song.details.popularity;
+         row.appendChild(titleTable);
+         row.appendChild(artistTable);
+         row.appendChild(yearTable);
+         row.appendChild(genreTable);
          row.appendChild(popularityTable);
          table.appendChild(row);
 
