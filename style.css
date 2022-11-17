@@ -2,7 +2,14 @@
     background-color:  #4494fc;
 }
 
+.grid-container{
+    display:grid;
+    grid-template-columns:33% 66%;
+    grid-template-rows:33% 66%;
+}
+
 header{
+    text-align: center;
     font-size: x-large;
     font-weight: bolder;
 }
@@ -16,3 +23,5 @@ header{
 #genres{
     background-color:  #a7a4a4;
 }
+
+
