@@ -23,6 +23,9 @@ header{
 #genres{
     background-color:  #a7a4a4;
 }
+th{
+    cursor: pointer;
+}
 
 
 

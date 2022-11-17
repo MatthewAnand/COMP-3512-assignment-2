@@ -90,3 +90,6 @@ function populateGenre(e){
       }
    }
 }
+function sortTable(n) {
+   
+ }
