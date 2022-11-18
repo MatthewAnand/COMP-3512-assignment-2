@@ -15,6 +15,10 @@ const artistArray = JSON.parse(artistString);
 const genreArray = JSON.parse(genreString);
 const songArray = JSON.parse(songString);
 document.addEventListener('DOMContentLoaded', function(){
+const headings = document.querySelectorAll('th');
+for(th of headings){
+   th.addEventListener("click", sortTableArtist);
+}
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 for(let a of artistArray){
@@ -40,7 +44,7 @@ function populateArtist(e){
    const artist = e.target;
    for (let song of songArray){
       if(song.artist.id == artist.value){
-         table = document.querySelector("#abc");
+         table = document.querySelector("tbody");
          row = document.createElement("tr")
          titleTable = document.createElement("td");
          titleTable.textContent=song.title;
@@ -68,12 +72,14 @@ function populateGenre(e){
    for (let song of songArray){
       if(song.genre.id == genre.value){
          console.log(genre.value)
-         table = document.querySelector("#abc");
+         table = document.querySelector("tbody");
          row = document.createElement("tr")
+         row.id="row";
          titleTable = document.createElement("td");
          titleTable.textContent=song.title;
          genreTable = document.createElement("td");
          genreTable.textContent = song.genre.name;
+         genreTable.id="genre";
          artistTable = document.createElement("td");
          artistTable.textContent = song.artist.name;
          yearTable = document.createElement("td");
@@ -90,6 +96,19 @@ function populateGenre(e){
       }
    }
 }
-function sortTable(n) {
-   
- }
+function sortTableByColumn (table, column, asc = true){
+   const dirModifier = asc ? 1 : -1;
+   const tBody = table.tBodies[0];
+   const rows = Array.from(tBody.querySelectorAll("tr"));
+
+   const sortedRows = rows.sort((a,b) =>{
+      const aColText = a.querySelector(`td:nth-child(${column+1})`).textContent.trim();
+      const bColText = a.querySelector(`td:nth-child(${column+1})`).textContent.trim();
+      console.log(aColText);
+      console.log(bColText);
+   }); 
+};
+function sortTableArtist(e) {
+   const colum = e.target.id;
+   sortTableByColumn(document.querySelector("#".colum));
+}
