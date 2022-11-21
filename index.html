@@ -67,7 +67,7 @@
 .item4 { grid-area: browse; }
 .item5 { grid-area: footer; }
 
-.grid-container {
+#index.grid-container{
   display: grid;
   grid-template-areas:
     'header header header header header header'
@@ -78,16 +78,17 @@
   padding: 10px;
 }
 
-.grid-container > div {
+#index.grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
 }
+
 </style>
 </head>
 <body>
-<div class="grid-container">
+<div class="grid-container" id="index">
   <script src="assign2.js"></script>
   <div class="item1">Header</div>
   <div class="item2">search
