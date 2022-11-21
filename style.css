@@ -26,6 +26,34 @@ header{
 th{
     cursor: pointer;
 }
+#song .item1 { grid-area: header; }
+#song .item2 { grid-area: songInfo; }
+#song .item3 { grid-area: radar; }
+#song .item5 { grid-area: footer; }
 
+#song.grid-container{
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'songInfo songInfo radar radar radar radar'
+    'songInfo songInfo radar radar radar radar'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+#song.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+table, th, td {
+    font-size:25px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    }
 
 

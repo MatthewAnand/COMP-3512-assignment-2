@@ -62,10 +62,10 @@
 <script src="sample-songs.json"></script>
 <link rel="stylesheet" href="style.css">
 <style>
-.item1 { grid-area: header; }
-.item2 { grid-area: search; }
-.item4 { grid-area: browse; }
-.item5 { grid-area: footer; }
+#index .item1 { grid-area: header; }
+#index .item2 { grid-area: search; }
+#index .item4 { grid-area: browse; }
+#index .item5 { grid-area: footer; }
 
 #index.grid-container{
   display: grid;
@@ -88,10 +88,11 @@
 </style>
 </head>
 <body>
+  <section id ="index" hidden>
 <div class="grid-container" id="index">
   <script src="assign2.js"></script>
-  <div class="item1">Header</div>
-  <div class="item2">search
+  <div class="item1" id = "index">Header</div>
+  <div class="item2" id = "index">search
     <select class="ui fluid dropdown" name="artists" id ="artists">;
       <option value='0'> </option>;
      </select>
@@ -99,7 +100,7 @@
        <option value='0'> </option>;
       </select>
   </div>
-  <div class="item4">browse
+  <div class="item4" id = "index">browse
     <table id ="abc" class = "table-sortable">
       <thead>
       <th id ="0" >Title</th>
@@ -113,8 +114,37 @@
       </tbody>
     </table>
   </div>
-  <div class="item5">Footer</div>
+  <div class="item5" id ="index">Footer</div>
 </div>
+</section>
 
+<section id="singleSongPage">
+  <div class="grid-container" id="song">
+    <div class="item1" id="song">Header</div>
+  
+    <div class="item2" id="song"><h3>Song Information</h3>
+      <table id="playlistTable">
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Popularity</th>
+          </tr>
+          <tr>
+            <td>Moms</td>
+            <td>Ur</td>
+            <td>420</td>
+            <td>Dad</td>
+            <td>69</td>
+          </tr>
+        </table>
+  
+    </div>
+    <div class="item3" id="song">Radar</div>  
+    <div class="item5" id="song"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
+  </div>
+  
+</section>
 </body>
 </html>

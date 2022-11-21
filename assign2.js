@@ -88,7 +88,11 @@ function populateArtist(e){
          row.appendChild(playlist);
          row.appendChild(seeSong);
          seeSongButton.id = song.id;
-         
+         seeSongButton.addEventListener("click", function(){
+            singleSong = document.querySelector("#SingleSongPage");
+            singleSong.classList = "none";
+            
+         })
          table.appendChild(row);
 
       }
