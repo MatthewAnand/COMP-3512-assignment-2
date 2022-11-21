@@ -120,8 +120,9 @@ function sortTableByColumn (table, column, asc = true){
    const rows = Array.from(tBody.querySelectorAll("tr"));
 
    const sortedRows = rows.sort((a,b) =>{
-      const aColText = a.querySelector(`td:nth-child(${column+1})`).textContent.trim();
-      const bColText = b.querySelector(`td:nth-child(${column+1})`).textContent.trim();
+      
+      const aColText = a.querySelector(`td:nth-child(${parseInt(column)+1})`).textContent.trim();
+      const bColText = b.querySelector(`td:nth-child(${parseInt(column)+1})`).textContent.trim();
       return aColText > bColText ? (1* dirModifier) : (-1 * dirModifier);console.log(sortedRows);
    }); 
    while(tBody.firstChild){
@@ -132,7 +133,7 @@ function sortTableByColumn (table, column, asc = true){
    headers = table.querySelectorAll("th")
    for(th of headers){
       (th.classList.remove("th-sort-asc", "th-sort-desc"));
-   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
-   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+   table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-asc", asc);
+   table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-desc", !asc);
    }
 };
