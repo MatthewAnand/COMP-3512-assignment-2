@@ -1,3 +1,4 @@
+<!---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +52,7 @@
 
 </body>
 </html>
-
+-->
 
 <!DOCTYPE html>
 <html>
@@ -59,7 +60,6 @@
 <script src="artists.json" label></script>
 <script src="genres.json"></script>
 <script src="sample-songs.json"></script>
-<script src="assign2.js"></script>
 <link rel="stylesheet" href="style.css">
 <style>
 .item1 { grid-area: header; }
@@ -88,9 +88,30 @@
 </head>
 <body>
 <div class="grid-container">
+  <script src="assign2.js"></script>
   <div class="item1">Header</div>
-  <div class="item2">search</div>
-  <div class="item4">browse</div>
+  <div class="item2">search
+    <select class="ui fluid dropdown" name="artists" id ="artists">;
+      <option value='0'> </option>;
+     </select>
+     <select class="ui fluid dropdown" name="genres" id ="genres">;
+       <option value='0'> </option>;
+      </select>
+  </div>
+  <div class="item4">browse
+    <table id ="abc" class = "table-sortable">
+      <thead>
+      <th id ="0" >Title</th>
+      <th id ="1" >Artist</th>
+      <th id="2" >Year</th>
+      <th id="3" >Genre</th>
+      <th id="4">Popularity</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
   <div class="item5">Footer</div>
 </div>
 
