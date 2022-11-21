@@ -88,7 +88,7 @@
 </style>
 </head>
 <body>
-  <section id ="index" hidden>
+  <section id ="index">
 <div class="grid-container" id="index">
   <script src="assign2.js"></script>
   <div class="item1" id = "index">Header</div>
@@ -119,28 +119,38 @@
 </section>
 
 <!--Song Page-->
-<section id="singleSongPage">
+<section id="singleSongPage" hidden>
   <div class="grid-container" id="song">
     <div class="item1" id="song">Header</div>
+    <button id="back"> Close </button>
   
     <div class="item2" id="song"><h3>Song Information</h3>
       <table id="songtable">
-          <tr>
+          <thead>
             <th>Title</th>
             <th>Artist</th>
             <th>Year</th>
             <th>Genre</th>
-            <th>Popularity</th>
-          </tr>
+            <th>Duration</th>
+          </thead>
           <tr>
-            <td>Moms</td>
-            <td>Ur</td>
-            <td>420</td>
-            <td>Dad</td>
-            <td>69</td>
+            <td id="title">Moms</td>
+            <td id ="artist">Ur</td>
+            <td id ="year">420</td>
+            <td id ="genre">Dad</td>
+            <td id ="duration" >69</td>
           </tr>
         </table>
-  
+  <ul>
+    <li id ="bpm"></li>
+    <li id ="energy"></li>
+    <li id ="danceability"></li>
+    <li id ="liveness"></li>
+    <li id ="valence"></li>
+    <li id ="acousticness"></li>
+    <li id ="speechiness"></li>
+    <li id ="popularity"></li>
+  </ul>
     </div>
     <div class="item3" id="song">Radar</div>  
     <div class="item5" id="song"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
