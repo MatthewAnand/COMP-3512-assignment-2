@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: songInfo; }
+.item3 { grid-area: radar; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'songInfo songInfo radar radar radar radar'
+    'songInfo songInfo radar radar radar radar'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+table, th, td {
+    font-size:25px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    }
+</style>
+
+</head>
+<body>
+<div class="grid-container">
+  <div class="item1">Header</div>
+
+  <div class="item2"><h3>Song Information</h3>
+    <table id="playlistTable">
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Year</th>
+          <th>Genre</th>
+          <th>Popularity</th>
+        </tr>
+        <tr>
+          <td>Moms</td>
+          <td>Ur</td>
+          <td>420</td>
+          <td>Dad</td>
+          <td>69</td>
+        </tr>
+      </table>
+
+  </div>
+  <div class="item3">Radar</div>  
+  <div class="item5"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
+</div>
+</div>
+
+</body>
+</html>
