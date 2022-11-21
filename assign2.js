@@ -71,10 +71,12 @@ function populateArtist(e){
          popularityTable.id="4"
          playlist = document.createElement("td");
          playlistButton = document.createElement("button");
+         playlistButton.id = "playlist"
          playlistButton.textContent = "Add to Playlist"
          playlist.appendChild(playlistButton);
          seeSong = document.createElement("td");
          seeSongButton = document.createElement("button");
+         seeSongButton.id = "view";
          seeSongButton.textContent = "View"
          seeSong.appendChild(seeSongButton);
 
@@ -85,7 +87,8 @@ function populateArtist(e){
          row.appendChild(popularityTable);
          row.appendChild(playlist);
          row.appendChild(seeSong);
-
+         seeSongButton.id = song.id;
+         
          table.appendChild(row);
 
       }
