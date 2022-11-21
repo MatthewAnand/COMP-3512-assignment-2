@@ -69,11 +69,23 @@ function populateArtist(e){
          popularityTable = document.createElement("td");
          popularityTable.textContent = song.details.popularity.toString();
          popularityTable.id="4"
+         playlist = document.createElement("td");
+         playlistButton = document.createElement("button");
+         playlistButton.textContent = "Add to Playlist"
+         playlist.appendChild(playlistButton);
+         seeSong = document.createElement("td");
+         seeSongButton = document.createElement("button");
+         seeSongButton.textContent = "View"
+         seeSong.appendChild(seeSongButton);
+
          row.appendChild(titleTable);
          row.appendChild(artistTable);
          row.appendChild(yearTable);
          row.appendChild(genreTable);
          row.appendChild(popularityTable);
+         row.appendChild(playlist);
+         row.appendChild(seeSong);
+
          table.appendChild(row);
 
       }
