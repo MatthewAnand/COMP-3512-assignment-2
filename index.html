@@ -61,31 +61,7 @@
 <script src="genres.json"></script>
 <script src="sample-songs.json"></script>
 <link rel="stylesheet" href="style.css">
-<style>
-#index .item1 { grid-area: header; }
-#index .item2 { grid-area: search; }
-#index .item4 { grid-area: browse; }
-#index .item5 { grid-area: footer; }
 
-#index.grid-container{
-  display: grid;
-  grid-template-areas:
-    'header header header header header header'
-    'search browse browse browse browse browse'
-    'footer footer footer footer footer footer';
-  gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
-}
-
-#index.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
-
-</style>
 </head>
 <body>
   <section id ="index">
@@ -114,7 +90,7 @@
       </tbody>
     </table>
   </div>
-  <div class="item5" id ="index">Footer</div>
+  <div class="footer" id ="index"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p></div>
 </div>
 </section>
 
@@ -153,7 +129,7 @@
   </ul>
     </div>
     <div class="item3" id="song">Radar</div>  
-    <div class="item5" id="song"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
+    <div class="footer" id="song"><p>COMP 3512|A Guy & Matthew Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
   </div>
   
 </section>
