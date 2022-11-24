@@ -60,6 +60,7 @@ table, th, td {
     }
 table, td:hover{
   background-color: white;
+  margin: auto;
 }
 
 #index .item1 { grid-area: header; }
