@@ -29,6 +29,7 @@ for(headerCell of headings){
    };
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
+const title = document.querySelector("#title");
 for(let a of artistArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -45,6 +46,7 @@ for(let a of genreArray){
    genres.appendChild(option);
 }
 genres.addEventListener("change", populateGenre);
+title.addEventListener("change", populateTitle);
 }
 );
 
@@ -209,6 +211,84 @@ function populateGenre(e){
          table.appendChild(row);
 
       }
+   }
+}
+function populateTitle(e){
+   const title = e.target;
+   for (let song of songArray){
+      if(song.title == title){
+         console.log(genre.value)
+         table = document.querySelector("tbody");
+         row = document.createElement("tr")
+         row.id="row";
+         titleTable = document.createElement("td");
+         titleTable.textContent=song.title;
+         titleTable.id="0";
+         genreTable = document.createElement("td");
+         genreTable.textContent = song.genre.name;
+         genreTable.id="3"
+         artistTable = document.createElement("td");
+         artistTable.textContent = song.artist.name;
+         artistTable.id="2"
+         yearTable = document.createElement("td");
+         yearTable.textContent = song.year.toString();
+         yearTable.id="2"
+         popularityTable = document.createElement("td");
+         popularityTable.textContent = song.details.popularity.toString();
+         popularityTable.id="4"
+         playlist = document.createElement("td");
+         playlistButton = document.createElement("button");
+         playlistButton.id = "playlist"
+         playlistButton.textContent = "Add to Playlist"
+         playlist.appendChild(playlistButton);
+         seeSong = document.createElement("td");
+         seeSongButton = document.createElement("button");
+         seeSongButton.id = "view";
+         seeSongButton.textContent = "View"
+         seeSong.appendChild(seeSongButton);
+
+         row.appendChild(titleTable);
+         row.appendChild(artistTable);
+         row.appendChild(yearTable);
+         row.appendChild(genreTable);
+         row.appendChild(popularityTable);
+         row.appendChild(playlist);
+         row.appendChild(seeSong);
+         seeSongButton.id = song.id;
+         seeSongButton.addEventListener("click", function(){
+            singleSong = document.querySelector("#singleSongPage");
+            index = document.querySelector("#index");
+            singleSong.hidden = false;
+            index.hidden=true;
+            const songLength = document.querySelector("#duration");
+            songLength.textContent=song.details.duration;
+            const songTitle = document.querySelector("#title");
+            songTitle.textContent = song.title;
+            const songArtist = document.querySelector("#artist");
+            songArtist.textContent = song.artist.name;
+            const songYear = document.querySelector("#year");
+            songYear.textContent = song.year;
+            const songGenre = document.querySelector("#genre");
+            songGenre.textContent = song.genre.name;
+            const bpm = document.querySelector("#bpm");
+            const energy = document.querySelector("#energy");
+            const dance = document.querySelector("#danceability");
+            const live = document.querySelector("#liveness");
+            const valence= document.querySelector("#valence");
+            const acoustic = document.querySelector("#acousticness");
+            const speech = document.querySelector("#speechiness");
+            const pop = document.querySelector("#popularity");
+            bpm.textContent = "BPM: " +song.details.bpm;
+            energy.textContent = "Energy: "+song.analytics.energy;
+            dance.textContent = "Danceability: "+song.analytics.danceability;
+            live.textContent = "Liveness: "+song.analytics.liveness;
+            valence.textContent = "Valence: "+song.analytics.valence
+            acoustic.textContent = "Acousticness: "+song.analytics.acousticness
+            speech.textContent = "Speechiness: "+song.analytics.speechiness
+            pop.textContent = "Popularity: "+song.details.popularity
+         })
+         table.appendChild(row);
+}
    }
 }
 function sortTableByColumn (table, column, asc = true){
