@@ -17,17 +17,17 @@
 #artists{
   font-family: monospace, Andalé Mono;
     background-color:  #a7a4a4;
-    margin-top: 2cm;
-    margin-right: 10cm;
 }
 
 #genres{
     font-family: monospace, Andalé Mono;
     background-color:  #a7a4a4;
 }
+
 th{
     cursor: pointer;
 }
+
 #song .item1 { grid-area: header; }
 #song .item2 { grid-area: songInfo; }
 #song .item3 { grid-area: radar; }
@@ -55,13 +55,18 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
+    background: #2196F3;
+    transition: background-color .2s ease-out 100ms
     }
+table, td:hover{
+  background-color: white;
+}
 
- #index .item1 { grid-area: header; }
+#index .item1 { grid-area: header; }
 #index .item2 { grid-area: search; }
 #index .item4 { grid-area: browse; }
 #index .footer { grid-area: footer; }
- #index.grid-container{
+#index.grid-container{
       display: grid;
       grid-template-areas:
         'header header header header header header'
@@ -78,4 +83,8 @@ table, th, td {
       padding: 20px 0;
     }
     
-
+li{
+  font-size: .8cm;
+  list-style: none;
+  border-color: black solid;
+}
