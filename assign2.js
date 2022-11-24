@@ -29,7 +29,7 @@ for(headerCell of headings){
    };
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
-const title = document.querySelector("#title");
+const title = document.querySelector("input");
 for(let a of artistArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -46,7 +46,7 @@ for(let a of genreArray){
    genres.appendChild(option);
 }
 genres.addEventListener("change", populateGenre);
-title.addEventListener("change", populateTitle);
+title.addEventListener("input", populateTitle);
 }
 );
 
@@ -127,13 +127,15 @@ function populateArtist(e){
       }
    }
 }
+/*
 const closeButton = document.querySelector("#back");
 console.log(closeButton);
 closeButton.addEventListener("click", function(){
    console.log("hello");
    singleSong.hidden = true;
    index.hidden=false;
-})
+}) 
+*/
 function populateGenre(e){
    const genre = e.target;
    for (let song of songArray){
@@ -214,9 +216,9 @@ function populateGenre(e){
    }
 }
 function populateTitle(e){
-   const title = e.target;
+   const title = e.target.value;
    for (let song of songArray){
-      if(song.title == title){
+      if(song.title.toLowerCase().includes(title.toLowerCase())){
          console.log(genre.value)
          table = document.querySelector("tbody");
          row = document.createElement("tr")
