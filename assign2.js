@@ -218,14 +218,15 @@ function populateGenre(e){
 function populateTitle(e){
    const title = e.target.value;
    for (let song of songArray){
+      //setTimeout(100);
       if(song.title.toLowerCase().includes(title.toLowerCase())){
-         console.log(genre.value)
+         //console.log(genre.value)
          table = document.querySelector("tbody");
          row = document.createElement("tr")
          row.id="row";
          titleTable = document.createElement("td");
          titleTable.textContent=song.title;
-         titleTable.id="0";
+         titleTable.id=song.song_id;
          genreTable = document.createElement("td");
          genreTable.textContent = song.genre.name;
          genreTable.id="3"
@@ -289,10 +290,51 @@ function populateTitle(e){
             speech.textContent = "Speechiness: "+song.analytics.speechiness
             pop.textContent = "Popularity: "+song.details.popularity
          })
-         table.appendChild(row);
+        addSongResult(table, titleTable, title);
+         //table.appendChild(row);
+      }else{
+         filterList(title);
+      }
+   } 
 }
+
+/** SOMTHING CAUSING TITLE SEARCH TRIGGER TO NOT FIRE SOMTIMES
+ *  ex: if you have "test" in the search field and press 1 or 2
+ * it will immedietly filter out evrething but test1 or test2,
+ * but when test3 is entered it only filters after you add and 
+ * delete a space. IDFK.
+ */
+// adds found song to table
+// also handles duplicates
+function addSongResult(table, titleTable, title){
+   filterList(title);
+   //get list of all rows
+   let listItems = document.querySelectorAll("#row");
+   let dupeFound = false;
+      
+   // if song already displayed
+   for(let i of listItems){
+      if(i.firstChild.id == titleTable.id){
+         dupeFound = true;
+      }
+   }
+   if (dupeFound == false){
+      table.appendChild(row);
+      filterList(title);
    }
 }
+
+// Loops through all results in browse table and
+// filters out values that no longer match search criteria
+function filterList(title){
+   let listItems = document.querySelectorAll("#row");
+   for(let i of listItems){
+      if(((titleTable.textContent.toLowerCase()).includes(title.toLowerCase())) == false){
+         i.remove();
+      }
+   }
+}
+
 function sortTableByColumn (table, column, asc = true){
    const dirModifier = asc ? 1 : -1;
    const tBody = table.tBodies[0];
