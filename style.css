@@ -89,3 +89,33 @@ li{
   list-style: none;
   border-color: black solid;
 }
+.item1 { grid-area: header; }
+.item2 { grid-area: playlist; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+#playlist.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'playlist playlist playlist playlist right right'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+
+#playlist.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+table, th, td {
+    font-size:25px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    }
