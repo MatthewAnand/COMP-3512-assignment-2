@@ -3,10 +3,12 @@
 
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
-// #1-2
+
 const songArray = [];
+let apiArtistArray = [];
+let apiGenreArray = [];
 // get song data from api and put into songArray
-fetch(`http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php`)
+fetch(`${api}`)
 .then(resp => resp.json())
 .then(songs => {
     console.log(`DATA FETCHED`);
@@ -14,8 +16,46 @@ fetch(`http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php`)
     for(let s of songs){
       songArray.push(s);
       }
+      apiArtistArray = buildArtistArray();
+      apiGenreArray = buildGenreArray();
+
 });
- 
+
+function buildArtistArray(){
+   const result = [];
+   for (let s of songArray){
+      apiArtistArray.push(s.artist);
+      apiGenreArray.push(s.genre);
+   }
+   
+   const map = new Map();
+   for (const artist of apiArtistArray) {
+      if(!map.has(artist.id)){
+         map.set(artist.id, true);    // set any value to Map
+         result.push({
+               id: artist.id,
+               name: artist.name
+         });
+      }
+   }
+   return result;
+}
+
+function buildGenreArray(){
+   const result = [];
+   const map = new Map();
+   for (const genre of apiGenreArray) {
+      if(!map.has(genre.id)){
+         map.set(genre.id, true);    // set any value to Map
+         result.push({
+               id: genre.id,
+               name: genre.name
+         });
+      }
+   }
+   return result;
+}
+
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
    local file). To work correctly, this needs to be tested on a local web server.  
@@ -24,7 +64,9 @@ fetch(`http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php`)
 */
 const artistArray = JSON.parse(artistString);
 const genreArray = JSON.parse(genreString);
-//const songArray = JSON.parse(songString);
+
+
+
 document.addEventListener('DOMContentLoaded', function(){
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
@@ -35,6 +77,7 @@ showPlaylist.addEventListener("click", function(){
    index.hidden = true;
    playlist.hidden = false;
 })
+
 header.appendChild(showPlaylist);
 const playlistHeader = document.querySelector("#playlistHeader")
 const back = document.createElement("button");
@@ -46,6 +89,7 @@ back.addEventListener("click", function(){
    playlist.hidden = true;
    
 })
+
 playlistHeader.appendChild(back);
 const headings = document.querySelectorAll(".table-sortable th");
 for(headerCell of headings){
@@ -63,7 +107,6 @@ const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
 
-// TODO: 
 // Populates the artist drop down
 for(let a of artistArray){
    const option = document.createElement("option");
@@ -369,3 +412,6 @@ function sortTableByColumn (table, column, asc = true){
    table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-desc", !asc);
    }
 };
+
+
+
