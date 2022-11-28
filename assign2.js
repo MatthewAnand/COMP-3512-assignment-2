@@ -3,7 +3,18 @@
 
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
-
+// #1-2
+const songArray = [];
+// get song data from api and put into songArray
+fetch(`http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php`)
+.then(resp => resp.json())
+.then(songs => {
+    console.log(`DATA FETCHED`);
+    // populate songArray
+    for(let s of songs){
+      songArray.push(s);
+      }
+});
  
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
@@ -13,7 +24,7 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
 */
 const artistArray = JSON.parse(artistString);
 const genreArray = JSON.parse(genreString);
-const songArray = JSON.parse(songString);
+//const songArray = JSON.parse(songString);
 document.addEventListener('DOMContentLoaded', function(){
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
@@ -51,6 +62,9 @@ for(headerCell of headings){
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
+
+// TODO: 
+// Populates the artist drop down
 for(let a of artistArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -59,6 +73,8 @@ for(let a of artistArray){
    artists.appendChild(option);
 }
 artists.addEventListener("change", populateArtist);
+
+// Populates the genre drop down
 for(let a of genreArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -79,6 +95,7 @@ title.addEventListener("input", populateTitle);
 function populateArtist(e){
    const artist = e.target;
    for (let song of songArray){
+      //console.log("artistLoop");
       if(song.artist.id == artist.value){
         //create song row
         buildSongRow(song);
@@ -92,6 +109,8 @@ function populateArtist(e){
       }
    }
 }
+
+
 /*
 const closeButton = document.querySelector("#back");
 console.log(closeButton);
@@ -100,7 +119,7 @@ closeButton.addEventListener("click", function(){
    singleSong.hidden = true;
    index.hidden=false;
 }) 
-*/
+
 
 /**
  * Triggered by changing the genre dropdown.
@@ -109,6 +128,7 @@ closeButton.addEventListener("click", function(){
 function populateGenre(e){
    const genre = e.target;
    for (let song of songArray){
+      //console.log("genreLoop");
       if(song.genre.id == genre.value){
          //create song row
          buildSongRow(song);
@@ -129,6 +149,7 @@ function populateGenre(e){
 function populateTitle(e){
    const title = e.target.value;
    for (let song of songArray){
+      //console.log("titleLoop");
       if(song.title.toLowerCase().includes(title.toLowerCase())){
          //create song row
          buildSongRow(song);
@@ -301,6 +322,7 @@ function addSongResult(table, titleTable, title){
       
    // if song already displayed
    for(let i of listItems){
+      //console.log("addSongLoop");
       if(i.firstChild.id == titleTable.id){
          dupeFound = true;
       }
@@ -316,6 +338,7 @@ function addSongResult(table, titleTable, title){
 function filterList(title){
    let listItems = document.querySelectorAll("#row");
    for(let i of listItems){
+      //console.log("filterLoop");
       if(((titleTable.textContent.toLowerCase()).includes(title.toLowerCase())) == false){
          i.remove();
       }
