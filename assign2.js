@@ -24,8 +24,36 @@ showPlaylist.addEventListener("click", function(){
    index.hidden = true;
    playlist.hidden = false;
 })
+const drops = document.querySelectorAll(".dropdown");
+for(const dropdown of drops){
+dropdown.addEventListener("click", function(){
+   dropMenu = document.querySelectorAll("#myDropdown")
+   for (const options of dropMenu){
+   options.classList.toggle("show");}
+})}
+window.addEventListener("click", function(event) {
+   if (!event.target.matches('.dropbtn')) {
+     var dropdowns = document.getElementsByClassName("dropdown-content");
+     var i;
+     for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+         openDropdown.classList.remove('show');
+       }
+     }
+   }
+ })
 header.appendChild(showPlaylist);
+const showNames = document.querySelector("a[href='#groupNames']");
+showNames.addEventListener("click", function(){
+   window.alert("The Group Members Are: Guy Goren, Matt Schweitzer, and Matthew Anand")
+})
+const showGit = document.querySelector("a[href = '#github']");
+showGit.addEventListener("click", function(){
+   window.alert("https://github.com/MatthewAnand/COMP-3512-assignment-2");
+})
 const playlistHeader = document.querySelector("#playlistHeader")
+const songHeader = document.querySelector("#songHeader");
 const back = document.createElement("button");
 back.textContent = "Close View";
 back.addEventListener("click", function(){
@@ -36,6 +64,7 @@ back.addEventListener("click", function(){
    
 })
 playlistHeader.appendChild(back);
+songHeader.appendChild(back);
 const headings = document.querySelectorAll(".table-sortable th");
 for(headerCell of headings){
    headerCell.addEventListener("click", (e) => {
