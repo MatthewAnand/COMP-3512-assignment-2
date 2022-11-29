@@ -4,17 +4,94 @@
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
- 
+const songArray = [];
+let apiArtistArray = [];
+let apiGenreArray = [];
+
+
+
+function buildArtistArray(){
+   const result = [];
+   for (let s of songArray){
+      apiArtistArray.push(s.artist);
+      apiGenreArray.push(s.genre);
+   }
+   
+   const map = new Map();
+   for (const artist of apiArtistArray) {
+      if(!map.has(artist.id)){
+         map.set(artist.id, true);    // set any value to Map
+         result.push({
+               id: artist.id,
+               name: artist.name
+         });
+      }
+   }
+   return result;
+}
+
+function buildGenreArray(){
+   const result = [];
+   const map = new Map();
+   for (const genre of apiGenreArray) {
+      if(!map.has(genre.id)){
+         map.set(genre.id, true);    // set any value to Map
+         result.push({
+               id: genre.id,
+               name: genre.name
+         });
+      }
+   }
+   return result;
+}
+
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
    local file). To work correctly, this needs to be tested on a local web server.  
    Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
    use built-in Live Preview.
 */
-const artistArray = JSON.parse(artistString);
-const genreArray = JSON.parse(genreString);
-const songArray = JSON.parse(songString);
+// const artistArray = JSON.parse(artistString);
+// const genreArray = JSON.parse(genreString);
+
+
+
 document.addEventListener('DOMContentLoaded', function(){
+
+
+
+   // get song data from api and put into songArray
+function getApiData(api){
+      fetch(`${api}`)
+      .then(resp => resp.json())
+      .then(songs => {
+      console.log(`DATA FETCHED`);
+      // populate songArray
+      for(let s of songs){
+         songArray.push(s);
+         }
+         apiArtistArray = buildArtistArray();
+         apiGenreArray = buildGenreArray();
+
+   });
+}
+
+/**
+ * this makes sure that the dropdowns are populated 500ms after
+ * getApiData is called. without it the dropdowns get built before
+ * the data is loaded.
+ * 
+ * I think this needs to be changed to somthing with either async
+ * or callbacks.
+ */
+function loadData(){
+   getApiData(api);
+   setTimeout(()=>{
+      buildDropdowns();
+   },500);
+}
+
+
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
 showPlaylist.textContent = "Playlist";
@@ -63,6 +140,7 @@ back.addEventListener("click", function(){
    playlist.hidden = true;
    
 })
+
 playlistHeader.appendChild(back);
 songHeader.appendChild(back);
 const headings = document.querySelectorAll(".table-sortable th");
@@ -80,23 +158,42 @@ for(headerCell of headings){
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
-for(let a of artistArray){
-   const option = document.createElement("option");
-   option.value=a.id;
-   option.textContent=a.name;
-   option.dataset.id=a.id;
-   artists.appendChild(option);
+
+function buildDropdowns(){
+   
+   // Populates the artist drop down
+      for(let a of apiArtistArray){
+      const option = document.createElement("option");
+      option.value=a.id;
+      option.textContent=a.name;
+      option.dataset.id=a.id;
+      artists.appendChild(option);
+   }
+      // Populates the genre drop down
+   for(let a of apiGenreArray){
+      const option = document.createElement("option");
+      option.value=a.id;
+      option.textContent=a.name;
+      option.dataset.id=a.id;
+      genres.appendChild(option);
+   }
 }
+//console.log(apiArtistArray);
+
+
 artists.addEventListener("change", populateArtist);
-for(let a of genreArray){
-   const option = document.createElement("option");
-   option.value=a.id;
-   option.textContent=a.name;
-   option.dataset.id=a.id;
-   genres.appendChild(option);
-}
+
+
 genres.addEventListener("change", populateGenre);
 title.addEventListener("input", populateTitle);
+
+
+const closeButton = document.querySelector("#back");
+closeButton.addEventListener("click", function(){
+   singleSong.hidden = true;
+   index.hidden=false;
+}) 
+loadData();
 
 }); // end of DOMContentLoaded EventListener
 
@@ -108,6 +205,7 @@ title.addEventListener("input", populateTitle);
 function populateArtist(e){
    const artist = e.target;
    for (let song of songArray){
+      //console.log("artistLoop");
       if(song.artist.id == artist.value){
         //create song row
         buildSongRow(song);
@@ -121,15 +219,10 @@ function populateArtist(e){
       }
    }
 }
-/*
-const closeButton = document.querySelector("#back");
-console.log(closeButton);
-closeButton.addEventListener("click", function(){
-   console.log("hello");
-   singleSong.hidden = true;
-   index.hidden=false;
-}) 
-*/
+
+
+
+
 
 /**
  * Triggered by changing the genre dropdown.
@@ -138,6 +231,7 @@ closeButton.addEventListener("click", function(){
 function populateGenre(e){
    const genre = e.target;
    for (let song of songArray){
+      //console.log("genreLoop");
       if(song.genre.id == genre.value){
          //create song row
          buildSongRow(song);
@@ -158,6 +252,7 @@ function populateGenre(e){
 function populateTitle(e){
    const title = e.target.value;
    for (let song of songArray){
+      //console.log("titleLoop");
       if(song.title.toLowerCase().includes(title.toLowerCase())){
          //create song row
          buildSongRow(song);
@@ -330,6 +425,7 @@ function addSongResult(table, titleTable, title){
       
    // if song already displayed
    for(let i of listItems){
+      //console.log("addSongLoop");
       if(i.firstChild.id == titleTable.id){
          dupeFound = true;
       }
@@ -345,6 +441,7 @@ function addSongResult(table, titleTable, title){
 function filterList(title){
    let listItems = document.querySelectorAll("#row");
    for(let i of listItems){
+      //console.log("filterLoop");
       if(((titleTable.textContent.toLowerCase()).includes(title.toLowerCase())) == false){
          i.remove();
       }
@@ -375,3 +472,6 @@ function sortTableByColumn (table, column, asc = true){
    table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-desc", !asc);
    }
 };
+
+
+
