@@ -3,17 +3,11 @@
     font-family: monospace, Andalé Mono;
     font-size: 0.5cm;
 }
-#index.footer {
+.footer {
   text-align: center;
   font-family: monospace, Andalé Mono;
   font-size: 0.5cm;
 }
-#playlist.footer {
-  text-align: center;
-  font-family: monospace, Andalé Mono;
-  font-size: 0.5cm;
-}
-
 #artists{
   font-family: monospace, Andalé Mono;
     background-color:  #a7a4a4;
@@ -33,7 +27,7 @@ th, a{
 #song .item3 { grid-area: radar; }
 #song .footer { grid-area: footer; }
 
-#song.grid-container{
+.grid-container{
   display: grid;
   grid-template-areas:
     'header header header header header header'
@@ -45,7 +39,7 @@ th, a{
   padding: 10px;
 }
 
-#song.grid-container > div {
+.grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 20px 0;

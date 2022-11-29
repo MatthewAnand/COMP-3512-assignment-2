@@ -108,6 +108,7 @@ showGit.addEventListener("click", function(){
 const playlistHeader = document.querySelector("#playlistHeader")
 const songHeader = document.querySelector("#songHeader");
 const back = document.createElement("button");
+
 back.textContent = "Close View";
 back.addEventListener("click", function(){
    const index = document.querySelector("#index");
@@ -117,8 +118,18 @@ back.addEventListener("click", function(){
    
 })
 
+const back1 = document.createElement("button");
+
+back1.textContent = "Close View";
+back1.addEventListener("click", function(){
+   const index = document.querySelector("#index");
+   const song = document.querySelector("#singleSongPage")
+   index.hidden = false;
+   song.hidden = true;
+   
+})
 playlistHeader.appendChild(back);
-songHeader.appendChild(back);
+songHeader.appendChild(back1);
 const headings = document.querySelectorAll(".table-sortable th");
 for(headerCell of headings){
    headerCell.addEventListener("click", (e) => {
@@ -182,14 +193,7 @@ function populateArtist(e){
 }
 
 
-/*
-const closeButton = document.querySelector("#back");
-console.log(closeButton);
-closeButton.addEventListener("click", function(){
-   console.log("hello");
-   singleSong.hidden = true;
-   index.hidden=false;
-}) 
+
 
 
 /**
