@@ -56,7 +56,7 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
     background: #2196F3;
-    transition: background-color .2s ease-out 100ms
+    transition: background-color 0s ease-out 100ms
     }
 table, td:hover{
   background-color: white;

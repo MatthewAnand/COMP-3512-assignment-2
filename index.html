@@ -1,59 +1,3 @@
-<!---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<script src="artists.json" label></script>
-<script src="genres.json"></script>
-<script src="sample-songs.json"></script>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class ="column-container">
-    <div class="grid-item">
-    <header>
-      Matthew Anand
-      &
-      Guy Goren
-      </header>
-    </div>
-    <script src="assign2.js"></script>
-    <div class="grid-item" id="search">
-  </div>
-    <div class="grid-item" id="header"></div>
-    <div class="grid-item" id="footer"></div>
-  </div>
-
-<section class="hidden" id="Search">
- <select class="ui fluid dropdown" name="artists" id ="artists">;
-   <option value='0'> </option>;
-  </select>
-  <select class="ui fluid dropdown" name="genres" id ="genres">;
-    <option value='0'> </option>;
-   </select>
-  </section>
-
-  <section class="hidden" id="results">
-    <div class="grid-item" id="songtable">
-      <table id ="abc" class = "table-sortable">
-      <thead>
-      <th id ="0" >Title</th>
-      <th id ="1" >Artist</th>
-      <th id="2" >Year</th>
-      <th id="3" >Genre</th>
-      <th id="4">Popularity</th>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
-    </div>
-  </section>
-
-
-</body>
-</html>
--->
-<!---Index--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,9 +11,9 @@
   <section id ="index">
 <div class="grid-container" id="index">
   <script src="assign2.js"></script>
-<header>
-  <div class="item1" id = "index">Header</div>
-</header>
+
+  <div class="item1" id = "index"><h2>Spofiy Song Picker</h2></div>
+
   <div class="item2" id = "index"> <h2>Search</h2>
     <select class="ui fluid dropdown" name="artists" id ="artists">;
       <option value='0'> Artists </option>;
@@ -87,6 +31,9 @@
       <th id="2" >Year</th>
       <th id="3" >Genre</th>
       <th id="4">Popularity</th>
+      <th id="5">Playlist</th>
+      <th id="6">View</th>
+
       </thead>
       <tbody>
 
@@ -100,7 +47,7 @@
 <!--Song Page-->
 <section id="singleSongPage" hidden>
   <div class="grid-container" id="song">
-    <div class="item1" id="song">Header</div>
+    <div class="item1" id="song"><h2>Spotify Song Picker</h2></div>
     <button id="back"> Close </button>
   
     <div class="item2" id="song"><h3>Song Information</h3>
@@ -113,11 +60,11 @@
             <th>Duration</th>
           </thead>
           <tr>
-            <td id="titleSong">Moms</td>
-            <td id ="artist">Ur</td>
-            <td id ="year">420</td>
-            <td id ="genre">Dad</td>
-            <td id ="duration" >69</td>
+            <td id="titleSong"></td>
+            <td id ="artist"></td>
+            <td id ="year"></td>
+            <td id ="genre"></td>
+            <td id ="duration"></td>
           </tr>
         </table>
   <ul>
