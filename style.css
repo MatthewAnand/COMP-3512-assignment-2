@@ -61,7 +61,7 @@ table, td:hover{
 #index .item2 { grid-area: search; }
 #index .item4 { grid-area: browse; }
 #index .footer { grid-area: footer; }
-#index.grid-container{
+#index .grid-container{
       display: grid;
       grid-template-areas:
         'header header header header header header'
@@ -72,7 +72,7 @@ table, td:hover{
       padding: 10px;
     }
     
-    #index.grid-container > div {
+    #index .grid-container > div {
       background-color: rgba(255, 255, 255, 0.8);
       text-align: center;
       padding: 20px 0;
@@ -122,7 +122,7 @@ li{
 
 #playlist .show {display: block;}
 #playlist .item1 { grid-area: header; }
-#playlist .item2 { grid-area: play; }
+#playlist .item2 { grid-area: playlist; }
 #playlist .item4 { grid-area: right; }
 #playlist .item5 { grid-area: footer; }
 
@@ -130,7 +130,7 @@ li{
   display: grid;
   grid-template-areas:
     'header header header header header header'
-    'play play play play right right'
+    'playlist playlist playlist playlist right right'
     'footer footer footer footer footer footer';
   gap: 10px;
   background-color: #2196F3;
