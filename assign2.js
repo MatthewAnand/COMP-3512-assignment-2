@@ -4,7 +4,58 @@
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
- 
+const songArray = [];
+let apiArtistArray = [];
+let apiGenreArray = [];
+// get song data from api and put into songArray
+fetch(`${api}`)
+.then(resp => resp.json())
+.then(songs => {
+    console.log(`DATA FETCHED`);
+    // populate songArray
+    for(let s of songs){
+      songArray.push(s);
+      }
+      apiArtistArray = buildArtistArray();
+      apiGenreArray = buildGenreArray();
+
+});
+
+function buildArtistArray(){
+   const result = [];
+   for (let s of songArray){
+      apiArtistArray.push(s.artist);
+      apiGenreArray.push(s.genre);
+   }
+   
+   const map = new Map();
+   for (const artist of apiArtistArray) {
+      if(!map.has(artist.id)){
+         map.set(artist.id, true);    // set any value to Map
+         result.push({
+               id: artist.id,
+               name: artist.name
+         });
+      }
+   }
+   return result;
+}
+
+function buildGenreArray(){
+   const result = [];
+   const map = new Map();
+   for (const genre of apiGenreArray) {
+      if(!map.has(genre.id)){
+         map.set(genre.id, true);    // set any value to Map
+         result.push({
+               id: genre.id,
+               name: genre.name
+         });
+      }
+   }
+   return result;
+}
+
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
    local file). To work correctly, this needs to be tested on a local web server.  
@@ -13,7 +64,9 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
 */
 const artistArray = JSON.parse(artistString);
 const genreArray = JSON.parse(genreString);
-const songArray = JSON.parse(songString);
+
+
+
 document.addEventListener('DOMContentLoaded', function(){
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
@@ -24,8 +77,36 @@ showPlaylist.addEventListener("click", function(){
    index.hidden = true;
    playlist.hidden = false;
 })
+const drops = document.querySelectorAll(".dropdown");
+for(const dropdown of drops){
+dropdown.addEventListener("click", function(){
+   dropMenu = document.querySelectorAll("#myDropdown")
+   for (const options of dropMenu){
+   options.classList.toggle("show");}
+})}
+window.addEventListener("click", function(event) {
+   if (!event.target.matches('.dropbtn')) {
+     var dropdowns = document.getElementsByClassName("dropdown-content");
+     var i;
+     for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+         openDropdown.classList.remove('show');
+       }
+     }
+   }
+ })
 header.appendChild(showPlaylist);
+const showNames = document.querySelector("a[href='#groupNames']");
+showNames.addEventListener("click", function(){
+   window.alert("The Group Members Are: Guy Goren, Matt Schweitzer, and Matthew Anand")
+})
+const showGit = document.querySelector("a[href = '#github']");
+showGit.addEventListener("click", function(){
+   window.alert("https://github.com/MatthewAnand/COMP-3512-assignment-2");
+})
 const playlistHeader = document.querySelector("#playlistHeader")
+const songHeader = document.querySelector("#songHeader");
 const back = document.createElement("button");
 back.textContent = "Close View";
 back.addEventListener("click", function(){
@@ -35,7 +116,9 @@ back.addEventListener("click", function(){
    playlist.hidden = true;
    
 })
+
 playlistHeader.appendChild(back);
+songHeader.appendChild(back);
 const headings = document.querySelectorAll(".table-sortable th");
 for(headerCell of headings){
    headerCell.addEventListener("click", (e) => {
@@ -51,6 +134,8 @@ for(headerCell of headings){
 const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
+
+// Populates the artist drop down
 for(let a of artistArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -59,6 +144,8 @@ for(let a of artistArray){
    artists.appendChild(option);
 }
 artists.addEventListener("change", populateArtist);
+
+// Populates the genre drop down
 for(let a of genreArray){
    const option = document.createElement("option");
    option.value=a.id;
@@ -79,6 +166,7 @@ title.addEventListener("input", populateTitle);
 function populateArtist(e){
    const artist = e.target;
    for (let song of songArray){
+      //console.log("artistLoop");
       if(song.artist.id == artist.value){
         //create song row
         buildSongRow(song);
@@ -92,6 +180,8 @@ function populateArtist(e){
       }
    }
 }
+
+
 /*
 const closeButton = document.querySelector("#back");
 console.log(closeButton);
@@ -100,7 +190,7 @@ closeButton.addEventListener("click", function(){
    singleSong.hidden = true;
    index.hidden=false;
 }) 
-*/
+
 
 /**
  * Triggered by changing the genre dropdown.
@@ -109,6 +199,7 @@ closeButton.addEventListener("click", function(){
 function populateGenre(e){
    const genre = e.target;
    for (let song of songArray){
+      //console.log("genreLoop");
       if(song.genre.id == genre.value){
          //create song row
          buildSongRow(song);
@@ -129,6 +220,7 @@ function populateGenre(e){
 function populateTitle(e){
    const title = e.target.value;
    for (let song of songArray){
+      //console.log("titleLoop");
       if(song.title.toLowerCase().includes(title.toLowerCase())){
          //create song row
          buildSongRow(song);
@@ -301,6 +393,7 @@ function addSongResult(table, titleTable, title){
       
    // if song already displayed
    for(let i of listItems){
+      //console.log("addSongLoop");
       if(i.firstChild.id == titleTable.id){
          dupeFound = true;
       }
@@ -316,6 +409,7 @@ function addSongResult(table, titleTable, title){
 function filterList(title){
    let listItems = document.querySelectorAll("#row");
    for(let i of listItems){
+      //console.log("filterLoop");
       if(((titleTable.textContent.toLowerCase()).includes(title.toLowerCase())) == false){
          i.remove();
       }
@@ -346,3 +440,6 @@ function sortTableByColumn (table, column, asc = true){
    table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-desc", !asc);
    }
 };
+
+
+

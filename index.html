@@ -11,9 +11,16 @@
   <section id ="index">
 <div class="grid-container" id="index">
   <script src="assign2.js"></script>
-
-  <div class="item1" id = "index"><h2>Spofiy Song Picker</h2></div>
-
+<header>
+  <div class="item1" id = "index">Header</div>
+  <div class="dropdown">
+    <button class="dropbtn">Credits</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#groupNames">Group Members</a>
+      <a href="#github">github</a>
+    </div>
+  </div>
+</header>
   <div class="item2" id = "index"> <h2>Search</h2>
     <select class="ui fluid dropdown" name="artists" id ="artists">;
       <option value='0'> Artists </option>;
@@ -47,8 +54,16 @@
 <!--Song Page-->
 <section id="singleSongPage" hidden>
   <div class="grid-container" id="song">
-    <div class="item1" id="song"><h2>Spotify Song Picker</h2></div>
-    <button id="back"> Close </button>
+    <header id="songHeader">
+    <div class="item1" id="song">Header</div>
+    <div class="dropdown">
+      <button class="dropbtn">Credits</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#groupNames">Group Members</a>
+        <a href="#github">github</a>
+      </div>
+    </div>
+  </header>
   
     <div class="item2" id="song"><h3>Song Information</h3>
       <table id="songtable">
@@ -91,6 +106,14 @@
 <div class="grid-container" id="playlist">
   <header id = "playlistHeader">
   <div class="item1">Playlist</div>
+  <div class="dropdown">
+    <button class="dropbtn">Credits</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#groupNames">Group Members</a>
+      <a href="#github">github</a>
+    </div>
+    </div>
+  </div>
 </header>
   <div class="item2">Details
     <table id ="PlaylistTable">
