@@ -7,8 +7,19 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
 const songArray = [];
 let apiArtistArray = [];
 let apiGenreArray = [];
+// get song data from api and put into songArray
+fetch(`${api}`)
+.then(resp => resp.json())
+.then(songs => {
+    console.log(`DATA FETCHED`);
+    // populate songArray
+    for(let s of songs){
+      songArray.push(s);
+      }
+      apiArtistArray = buildArtistArray();
+      apiGenreArray = buildGenreArray();
 
-
+});
 
 function buildArtistArray(){
    const result = [];
@@ -51,47 +62,12 @@ function buildGenreArray(){
    Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
    use built-in Live Preview.
 */
-// const artistArray = JSON.parse(artistString);
-// const genreArray = JSON.parse(genreString);
+const artistArray = JSON.parse(artistString);
+const genreArray = JSON.parse(genreString);
 
 
 
 document.addEventListener('DOMContentLoaded', function(){
-
-
-
-   // get song data from api and put into songArray
-function getApiData(api){
-      fetch(`${api}`)
-      .then(resp => resp.json())
-      .then(songs => {
-      console.log(`DATA FETCHED`);
-      // populate songArray
-      for(let s of songs){
-         songArray.push(s);
-         }
-         apiArtistArray = buildArtistArray();
-         apiGenreArray = buildGenreArray();
-
-   });
-}
-
-/**
- * this makes sure that the dropdowns are populated 500ms after
- * getApiData is called. without it the dropdowns get built before
- * the data is loaded.
- * 
- * I think this needs to be changed to somthing with either async
- * or callbacks.
- */
-function loadData(){
-   getApiData(api);
-   setTimeout(()=>{
-      buildDropdowns();
-   },500);
-}
-
-
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
 showPlaylist.textContent = "Playlist";
@@ -159,41 +135,26 @@ const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
 
-function buildDropdowns(){
-   
-   // Populates the artist drop down
-      for(let a of apiArtistArray){
-      const option = document.createElement("option");
-      option.value=a.id;
-      option.textContent=a.name;
-      option.dataset.id=a.id;
-      artists.appendChild(option);
-   }
-      // Populates the genre drop down
-   for(let a of apiGenreArray){
-      const option = document.createElement("option");
-      option.value=a.id;
-      option.textContent=a.name;
-      option.dataset.id=a.id;
-      genres.appendChild(option);
-   }
+// Populates the artist drop down
+for(let a of artistArray){
+   const option = document.createElement("option");
+   option.value=a.id;
+   option.textContent=a.name;
+   option.dataset.id=a.id;
+   artists.appendChild(option);
 }
-//console.log(apiArtistArray);
-
-
 artists.addEventListener("change", populateArtist);
 
-
+// Populates the genre drop down
+for(let a of genreArray){
+   const option = document.createElement("option");
+   option.value=a.id;
+   option.textContent=a.name;
+   option.dataset.id=a.id;
+   genres.appendChild(option);
+}
 genres.addEventListener("change", populateGenre);
 title.addEventListener("input", populateTitle);
-
-
-const closeButton = document.querySelector("#back");
-closeButton.addEventListener("click", function(){
-   singleSong.hidden = true;
-   index.hidden=false;
-}) 
-loadData();
 
 }); // end of DOMContentLoaded EventListener
 
@@ -221,7 +182,14 @@ function populateArtist(e){
 }
 
 
-
+/*
+const closeButton = document.querySelector("#back");
+console.log(closeButton);
+closeButton.addEventListener("click", function(){
+   console.log("hello");
+   singleSong.hidden = true;
+   index.hidden=false;
+}) 
 
 
 /**
