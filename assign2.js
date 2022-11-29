@@ -370,6 +370,7 @@ function buildViewSongButton(song){
 function AddtoPlaylist(song){
 playlistButton.id = song.id;
 playlistButton.addEventListener("click", function(){
+   option = document.querySelector( "#playlist .item4");
    Playlist = document.querySelector("#playlistBody");
    songRow = document.createElement("tr");
    const songPop = document.createElement("td");
@@ -387,6 +388,14 @@ playlistButton.addEventListener("click", function(){
    songRow.appendChild(songYear);
    songRow.appendChild(songGenre);
    songRow.appendChild(songPop);
+   //remove button for this song
+   const removeSong = document.createElement("button");
+   removeSong.textContent = "Remove";
+   removeSong.addEventListener("click", function(){
+//STILL NEED TO FIGURE OUT HOW TO REMOVE THE ROW!!!!
+console.log("hello");
+   })
+   option.appendChild(removeSong);
    Playlist.appendChild(songRow);
    window.alert("The song " + songTitle.textContent + " by " +songArtist.textContent +" has been added to your playlist")
 })
