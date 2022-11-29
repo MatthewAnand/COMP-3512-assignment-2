@@ -167,6 +167,18 @@ for(let a of genreArray){
 genres.addEventListener("change", populateGenre);
 title.addEventListener("input", populateTitle);
 
+//adds the clear button to the playlist
+function replaceTable() {
+   const old_tbody = document.querySelector("#playlistBody")
+   const new_tbody = document.createElement('tbody');
+   new_tbody.id = "playlistBody";
+   old_tbody.parentNode.replaceChild(new_tbody, old_tbody)
+}
+const removeAll = document.createElement("button");
+removeAll.textContent = "Clear Playlist";
+removeAll.addEventListener("click", replaceTable)
+const options = document.querySelector("#playlist .item4")
+options.appendChild(removeAll);
 }); // end of DOMContentLoaded EventListener
 
 
@@ -360,7 +372,6 @@ playlistButton.id = song.id;
 playlistButton.addEventListener("click", function(){
    Playlist = document.querySelector("#playlistBody");
    songRow = document.createElement("tr");
-
    const songPop = document.createElement("td");
    songPop.textContent=song.details.popularity;
    const songTitle = document.createElement("td");
