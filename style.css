@@ -33,7 +33,7 @@ th, a{
 #song .item3 { grid-area: radar; }
 #song .footer { grid-area: footer; }
 
-#song.grid-container{
+.grid-container{
   display: grid;
   grid-template-areas:
     'header header header header header header'
@@ -126,4 +126,35 @@ li{
 
 .dropdown a:hover {background-color: #ddd;}
 
-.show {display: block;}
+#playlist .show {display: block;}
+#playlist .item1 { grid-area: header; }
+#playlist .item2 { grid-area: play; }
+#playlist .item4 { grid-area: right; }
+#playlist .item5 { grid-area: footer; }
+
+#playlist.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'play play play play right right'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+
+#playlist.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+table, th, td {
+    font-size:25px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+    }
