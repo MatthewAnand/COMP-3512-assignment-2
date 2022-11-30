@@ -1,10 +1,22 @@
 #song.footer {
     text-align: center;
     font-family: monospace, Andalé Mono;
+    bottom: 0;
+    position: fixed;
     font-size: 0.5cm;
 }
-.footer {
+#index.footer {
   text-align: center;
+  bottom: 0;
+  position: fixed;
+  font-family: monospace, Andalé Mono;
+  font-size: 0.5cm;
+}
+
+#playlist.footer {
+  text-align: center;
+  bottom: 0;
+  position: fixed;
   font-family: monospace, Andalé Mono;
   font-size: 0.5cm;
 }
@@ -124,7 +136,7 @@ li{
 #playlist .item1 { grid-area: header; }
 #playlist .item2 { grid-area: playlist; }
 #playlist .item4 { grid-area: right; }
-#playlist .item5 { grid-area: footer; }
+#playlist .footer { grid-area: footer; }
 
 #playlist.grid-container {
   display: grid;
@@ -152,3 +164,4 @@ table, th, td {
     text-align: center;
     margin: auto;
     }
+
