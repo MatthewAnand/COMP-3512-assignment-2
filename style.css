@@ -7,18 +7,23 @@ body{
 }
 
 #song.footer {
-    text-align: center;
-    font-family: monospace, Andalé Mono;
-    bottom: 0;
-    position: fixed;
-    font-size: 0.5cm;
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  font-family: monospace, Andalé Mono;
+  font-size: 0.5cm;
+  padding: 0px;
+  margin-left: 250px;
 }
+
 #index.footer {
   text-align: center;
   bottom: 0;
   position: fixed;
   font-family: monospace, Andalé Mono;
   font-size: 0.5cm;
+  padding: 0px;
+  margin-left: 250px;
 }
 
 #playlist.footer {
@@ -27,6 +32,8 @@ body{
   position: fixed;
   font-family: monospace, Andalé Mono;
   font-size: 0.5cm;
+  padding: 0px;
+  margin-left: 250px;
 }
 #artists{
   font-family: monospace, Andalé Mono;
@@ -56,7 +63,8 @@ th, a{
     'footer footer footer footer footer footer';
   gap: 10px;
   background-color: #2196F3;
-  padding: 10px;
+  border-radius: 25px;
+  padding: 1px
 }
 
 .grid-container > div {
@@ -98,7 +106,6 @@ table, tr:hover{
     #index .grid-container > div {
       background-color:#a4a8b1;
       text-align: center;
-      padding: 0;
     }
     
 li{
@@ -157,7 +164,8 @@ li{
     'footer footer footer footer footer footer';
   gap: 10px;
   background-color: #2196F3;
-  padding: 10px;
+  border-radius: 25px;
+  padding: 1px
 }
 
 
