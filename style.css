@@ -1,3 +1,11 @@
+body{
+  background-image: radial-gradient(circle,#2641c2, #01BFFD);
+}
+
+.div{
+  background-color:#2641c2 ;
+}
+
 #song.footer {
     text-align: center;
     font-family: monospace, Andalé Mono;
@@ -56,7 +64,7 @@ th, a{
   text-align: center;
   padding: 20px 0;
 }
-table, th, td {
+table, th, tr {
     font-size:25px;
     border: 1px solid black;
     border-collapse: collapse;
@@ -64,7 +72,8 @@ table, th, td {
     background: #2196F3;
     transition: background-color 0s ease-out 100ms
     }
-table, td:hover{
+
+table, tr:hover{
   background-color: white;
   margin: auto;
 }
