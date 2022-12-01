@@ -60,9 +60,10 @@ th, a{
 }
 
 .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #a4a8b1;
   text-align: center;
-  padding: 20px 0;
+  border-radius: 25px;
+  
 }
 table, th, tr {
     font-size:25px;
@@ -90,13 +91,14 @@ table, tr:hover{
         'footer footer footer footer footer footer';
       gap: 10px;
       background-color: #2196F3;
-      padding: 10px;
+      border-radius: 25px;
+      padding: 1px
     }
     
     #index .grid-container > div {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color:#a4a8b1;
       text-align: center;
-      padding: 20px 0;
+      padding: 0;
     }
     
 li{
@@ -160,9 +162,9 @@ li{
 
 
 #playlist.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #a4a8b1;
   text-align: center;
-  padding: 20px 0;
+  padding: 0;
   font-size: 30px;
 }
 
