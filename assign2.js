@@ -366,6 +366,7 @@ function buildViewSongButton(song){
       acoustic.textContent = "Acousticness: "+song.analytics.acousticness
       speech.textContent = "Speechiness: "+song.analytics.speechiness
       pop.textContent = "Popularity: "+song.details.popularity
+      buildChart(song.details.bpm, song.analytics.energy, song.analytics.danceability, song.analytics.liveness, song.analytics.valence, song.analytics.acousticness, song.analytics.speechiness, song.details.popularity);
    })
    
 }
@@ -466,6 +467,37 @@ function sortTableByColumn (table, column, asc = true){
    table.querySelector(`th:nth-child(${parseInt(column) + 1})`).classList.toggle("th-sort-desc", !asc);
    }
 };
+
+function buildChart(bpm, energy, dance, live, valence, acoustic, speech, pop){
+   // if chart exists, destroy.
+   if(typeof radarChart != "undefined"){
+      radarChart.destroy();
+   }
+   
+
+       const ctx = document.getElementById('myChart');
+       radarChart = new Chart(ctx, {
+         type: 'radar',
+         data: {
+           labels: ['BPM', 'Energy', 'Danceability', 'Liveness', 'Valence', 'Acousticness', 'Speechiness',
+             'Popularity'
+           ],
+           datasets: [{
+             label: 'Song Data',
+             data: [bpm, energy, dance, live, valence, acoustic, speech, pop],
+             borderWidth: 1
+           }]
+         },
+         options: {
+            maintainAspectRatio: false,
+           scales: {
+             y: {
+               beginAtZero: false
+             }
+           }
+         }
+       });
+}
 
 
 

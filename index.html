@@ -1,149 +1,170 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="artists.json" label></script>
-<script src="genres.json"></script>
-<script src="sample-songs.json"></script>
-<link rel="stylesheet" href="style.css">
-<meta charset="UTF-8">
+  <script src="artists.json" label></script>
+  <script src="genres.json"></script>
+  <script src="sample-songs.json"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
 </head>
+
 <body>
-  <section id ="index">
-<div class="grid-container" id="index">
-  <script src="assign2.js"></script>
-<header>
-  <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
-  <div class="logo">
-    <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">Credits</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#groupNames">Group Members</a>
-      <a href="#github">Github</a>
-    </div>
-  </div>
-</header>
-  <div class="item2" id = "index"> <h2>Search</h2>
-    <select class="ui fluid dropdown" name="artists" id ="artists">;
-      <option value='0'> Artists </option>;
-     </select>
-     <select class="ui fluid dropdown" name="genres" id ="genres">;
-       <option value='0'> Genres </option>;
-      </select>
-      <br>
-      <label>Title:</label>
-    <input type="text" id="title" name="title">
-  </div>
-  <div class="item4" id ="index"><h2>Browse</h2>
-    <table id ="abc" class ="table-sortable">
-      <thead>
-        <tr>
-      <th id ="0" >Title</th>
-      <th id ="1" >Artist</th>
-      <th id="2" >Year</th>
-      <th id="3" >Genre</th>
-      <th id="4">Popularity</th>
-      <th id="5">Playlist</th>
-      <th id="6">View</th>
-    </tr>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
-  </div>
-  <div class="footer" id ="index"  style="font-size: .5cm;"><p>COMP 3512 | A Matts & Guy Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p></div>
-</div>
-</section>
-
-<!--Song Page-->
-<section id="singleSongPage" hidden>
-  <div class="grid-container" id="song">
-    <header id="songHeader">
-      <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
-  <div class="logo">
-    <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
-  </div>
-    <div class="dropdown">
-      <button class="dropbtn">Credits</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#groupNames">Group Members</a>
-        <a href="#github">github</a>
+  <section id="index">
+    <div class="grid-container" id="index">
+      <script src="assign2.js"></script>
+      <header>
+        <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
+        <div class="logo">
+          <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Credits</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#groupNames">Group Members</a>
+            <a href="#github">Github</a>
+          </div>
+        </div>
+      </header>
+      <div class="item2" id="index">
+        <h2>Search</h2>
+        <select class="ui fluid dropdown" name="artists" id="artists">;
+          <option value='0'> Artists </option>;
+        </select>
+        <select class="ui fluid dropdown" name="genres" id="genres">;
+          <option value='0'> Genres </option>;
+        </select>
+        <br>
+        <label>Title:</label>
+        <input type="text" id="title" name="title">
       </div>
-    </div>
-  </header>
-  
-    <div class="item2" id="song"><h3>Song Information</h3>
-      <table id="songtable">
+      <div class="item4" id="index">
+        <h2>Browse</h2>
+        <table id="abc" class="table-sortable">
           <thead>
             <tr>
+              <th id="0">Title</th>
+              <th id="1">Artist</th>
+              <th id="2">Year</th>
+              <th id="3">Genre</th>
+              <th id="4">Popularity</th>
+              <th id="5">Playlist</th>
+              <th id="6">View</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="footer" id="index" style="font-size: .5cm;">
+        <p>COMP 3512 | A Matt's & Guy Site &copy; github.com/MatthewAnand | github.com/guygoren |
+          github.com/SchweitzCodes</p>
+      </div>
+    </div>
+  </section>
+
+  <!--Song Page-->
+  <section id="singleSongPage" hidden>
+    <div class="grid-container" id="song">
+      <header id="songHeader">
+        <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
+        <div class="logo">
+          <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Credits</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#groupNames">Group Members</a>
+            <a href="#github">github</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="item2" id="song">
+        <h3>Song Information</h3>
+        <table id="songtable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Year</th>
+              <th>Genre</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="titleSong"></td>
+              <td id="artist"></td>
+              <td id="year"></td>
+              <td id="genre"></td>
+              <td id="duration"></td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li id="bpm"></li>
+          <li id="energy"></li>
+          <li id="danceability"></li>
+          <li id="liveness"></li>
+          <li id="valence"></li>
+          <li id="acousticness"></li>
+          <li id="speechiness"></li>
+          <li id="popularity"></li>
+        </ul>
+      </div>
+      <div class="item3" id="radar">Radar <br>
+        <!-- RADAR CHART HERE -->
+        <!-- <script src="radar.js"></script> -->
+        <div>
+          <canvas id="myChart" style="height: 600px"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      </div>
+      <div class="footer" id="song" style="font-size: .5cm;">
+        <p>COMP 3512 | A Matt's & Guy Site &copy; github.com/MatthewAnand | github.com/guygoren |
+          github.com/SchweitzCodes</p>
+      </div>
+
+  </section>
+
+
+  <!--Playlist Page-->
+  <section id="playlistPage" hidden>
+    <div class="grid-container" id="playlist">
+      <header id="playlistHeader">
+        <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
+        <div class="logo">
+          <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Credits</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#groupNames">Group Members</a>
+            <a href="#github">github</a>
+          </div>
+        </div>
+      </header>
+      <div class="item2" id="playlist">Details
+        <table id="PlaylistTable">
+          <thead id="playlistHeader">
             <th>Title</th>
             <th>Artist</th>
             <th>Year</th>
             <th>Genre</th>
-            <th>Duration</th>
-            </tr>
+            <th>Popularity</th>
           </thead>
-          <tbody>
-          <tr>
-            <td id="titleSong"></td>
-            <td id ="artist"></td>
-            <td id ="year"></td>
-            <td id ="genre"></td>
-            <td id ="duration"></td>
-          </tr>
-        </tbody>
+          <tbody id="playlistBody">
+          </tbody>
         </table>
-  <ul>
-    <li id ="bpm"></li>
-    <li id ="energy"></li>
-    <li id ="danceability"></li>
-    <li id ="liveness"></li>
-    <li id ="valence"></li>
-    <li id ="acousticness"></li>
-    <li id ="speechiness"></li>
-    <li id ="popularity"></li>
-  </ul>
+      </div>
+      <div class="footer" style="font-size: .5cm;" id="playlist">
+        <p>COMP 3512 | A Matt's & Guy Site &copy; github.com/MatthewAnand | github.com/guygoren |
+          github.com/SchweitzCodes</p>
+      </div>
     </div>
-    <div class="item3" id="song">Radar</div>  
-    <div class="footer" id="song"
-    style="font-size: .5cm;"><p>COMP 3512 | A Matts & Guy Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p>
-  </div>
-  
-</section>
-
-
-<!--Playlist Page-->
-<section id = "playlistPage" hidden>
-<div class="grid-container" id="playlist">
-  <header id = "playlistHeader">
-    <!-- <div class="item1" id = "index" ><h1>COMP 3512 Song Picker!</h1></div> -->
-    <div class="logo">
-      <a href="#"><img class="pb-50" src="../images/logorgb.png" alt="" width="250"></a>
-    </div>
-  <div class="dropdown">
-    <button class="dropbtn">Credits</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#groupNames">Group Members</a>
-      <a href="#github">github</a>
-    </div>
-    </div>
-</header>
-  <div class="item2" id="playlist">Details
-    <table id ="PlaylistTable">
-  <thead id="playlistHeader">
-    <th>Title</th>
-    <th>Artist</th>
-    <th>Year</th>
-    <th>Genre</th>
-    <th>Popularity</th>
-  </thead>
-  <tbody id="playlistBody">
-</tbody>
-</table></div>
-  <div class="footer" style="font-size: .5cm;" id="playlist"><p>COMP 3512 | A Matts & Guy Site  &copy;  https://github.com/MatthewAnand  |  https://github.com/guygoren </p></div>
-</div>
 
 </body>
+
 </html>
