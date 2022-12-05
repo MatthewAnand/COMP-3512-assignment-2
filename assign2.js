@@ -297,6 +297,7 @@ function buildSongRow(song){
       acoustic.textContent = "Acousticness: "+song.analytics.acousticness
       speech.textContent = "Speechiness: "+song.analytics.speechiness
       pop.textContent = "Popularity: "+song.details.popularity
+      buildChart(song.details.bpm, song.analytics.energy, song.analytics.danceability, song.analytics.liveness, song.analytics.valence, song.analytics.acousticness, song.analytics.speechiness, song.details.popularity);
    })
    titleLink.textContent=song.title;
    titleTable.id=song.song_id;
