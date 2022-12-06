@@ -177,10 +177,9 @@ function replaceTable() {
 const removeAll = document.createElement("button");
 removeAll.textContent = "Clear Playlist";
 removeAll.addEventListener("click", replaceTable)
-const options = document.querySelector("#playlistHeader");
-const rowButton = document.createElement("th");
-rowButton.appendChild(removeAll);
-options.appendChild(rowButton);
+const options = document.querySelector("#buttonPlaylist");
+options.appendChild(removeAll);
+
 }); // end of DOMContentLoaded EventListener
 
 
@@ -397,7 +396,6 @@ playlistButton.addEventListener("click", function(){
    removeSong.addEventListener("click", function(){
  let row = removeSong.parentNode;
  row.parentNode.removeChild(row);
-console.log("hello");
    })
    songRow.appendChild(removeSong);
    Playlist.appendChild(songRow);
