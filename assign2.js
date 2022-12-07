@@ -278,7 +278,13 @@ function buildSongRow(song){
       const songLength = document.querySelector("#duration");
       let minutes = (song.details.duration / 60).toFixed(0);
       let seconds = (song.details.duration % 60);
-      songLength.textContent= `${minutes}:${seconds}`;
+      if(seconds < 10){ // dumb fix to add a leading zero.
+         songLength.textContent= `${minutes}:0${seconds}`;
+      }else{
+         songLength.textContent= `${minutes}:${seconds}`;
+      }
+
+      
   
       const songTitle = document.querySelector("#titleSong");
       songTitle.textContent = song.title;
