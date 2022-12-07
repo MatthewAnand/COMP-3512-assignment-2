@@ -192,6 +192,7 @@ options.appendChild(removeAll);
  * Retrives results and populates the table. 
  */
 function populateArtist(e){
+   clearList();
    const artist = e.target;
    for (let song of songArray){
       //console.log("artistLoop");
@@ -209,7 +210,13 @@ function populateArtist(e){
    }
 }
 
-
+// simply clears the table
+function clearList(){
+   let list = document.getElementById(`tableBody`);
+   while(list.firstChild){
+      list.removeChild(list.firstChild);
+   }
+}
 
 
 
@@ -218,6 +225,7 @@ function populateArtist(e){
  * Retrives results and populates the table. 
  */
 function populateGenre(e){
+   clearList();
    const genre = e.target;
    for (let song of songArray){
       //console.log("genreLoop");
