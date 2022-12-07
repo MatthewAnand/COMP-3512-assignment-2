@@ -484,7 +484,7 @@ function buildChart(bpm, energy, dance, live, valence, acoustic, speech, pop){
            datasets: [{
              label: 'Song Data',
              data: [bpm, energy, dance, live, valence, acoustic, speech, pop],
-             backgroundColor: 'rgba(0, 0, 0, 0.1)',
+             backgroundColor: 'rgba(54, 162, 235, 0.2)',
              borderColor: 'rgba(0,175,236,255)',
              pointBackgroundColor: 'rgba(11,49,86,255)',
              pointBorderColor: 'rgba(11,49,86,255)',
