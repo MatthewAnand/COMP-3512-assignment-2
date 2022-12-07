@@ -186,7 +186,7 @@ li{
 
 .dropdown a:hover {background-color: #ddd;}
 
-#playlist .show {display: block;}
+.show {display: block;}
 #playlist .item1 { grid-area: header; }
 #playlist .item2 { grid-area: playlist; }
 #playlist .item4 { grid-area: right; }

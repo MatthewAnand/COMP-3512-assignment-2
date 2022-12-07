@@ -77,12 +77,14 @@ showPlaylist.addEventListener("click", function(){
    index.hidden = true;
    playlist.hidden = false;
 })
-const drops = document.querySelectorAll(".dropdown");
+const drops = document.querySelectorAll(".dropbtn");
 for(const dropdown of drops){
 dropdown.addEventListener("click", function(){
+   console.log("hello");
    dropMenu = document.querySelectorAll("#myDropdown")
    for (const options of dropMenu){
-   options.classList.toggle("show");}
+   options.classList.toggle("show");
+}
 })}
 window.addEventListener("click", function(event) {
    if (!event.target.matches('.dropbtn')) {
@@ -97,14 +99,16 @@ window.addEventListener("click", function(event) {
    }
  })
 header.appendChild(showPlaylist);
-const showNames = document.querySelector("a[href='#groupNames']");
-showNames.addEventListener("click", function(){
+const showNames = document.querySelectorAll("a[href='#groupNames']");
+for (let names of showNames){
+names.addEventListener("click", function(){
    window.alert("The Group Members Are: Guy Goren, Matt Schweitzer, and Matthew Anand")
-})
-const showGit = document.querySelector("a[href = '#github']");
-showGit.addEventListener("click", function(){
+})}
+const showGit = document.querySelectorAll("a[href = '#github']");
+for(Git of showGit){
+Git.addEventListener("click", function(){
    window.alert("https://github.com/MatthewAnand/COMP-3512-assignment-2");
-})
+})}
 const playlistHeader = document.querySelector("#playlistHeader")
 const songHeader = document.querySelector("#songHeader");
 const back = document.createElement("button");
