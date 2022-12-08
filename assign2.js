@@ -2,7 +2,7 @@
 
 
 /* url of song api --- https versions hopefully a little later this semester */	
-const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
 const songArray = [];
 let apiArtistArray = [];
@@ -191,6 +191,7 @@ options.appendChild(removeAll);
  * Retrives results and populates the table. 
  */
 function populateArtist(e){
+   clearList();
    const artist = e.target;
    for (let song of songArray){
       //console.log("artistLoop");
@@ -208,7 +209,13 @@ function populateArtist(e){
    }
 }
 
-
+// simply clears the table
+function clearList(){
+   let list = document.getElementById(`tableBody`);
+   while(list.firstChild){
+      list.removeChild(list.firstChild);
+   }
+}
 
 
 
@@ -217,6 +224,7 @@ function populateArtist(e){
  * Retrives results and populates the table. 
  */
 function populateGenre(e){
+   clearList();
    const genre = e.target;
    for (let song of songArray){
       //console.log("genreLoop");
@@ -273,8 +281,18 @@ function buildSongRow(song){
       index = document.querySelector("#index");
       singleSong.hidden = false;
       index.hidden=true;
+      // calc duration
       const songLength = document.querySelector("#duration");
-      songLength.textContent=song.details.duration;
+      let minutes = (song.details.duration / 60).toFixed(0);
+      let seconds = (song.details.duration % 60);
+      if(seconds < 10){ // dumb fix to add a leading zero.
+         songLength.textContent= `${minutes}:0${seconds}`;
+      }else{
+         songLength.textContent= `${minutes}:${seconds}`;
+      }
+
+      
+  
       const songTitle = document.querySelector("#titleSong");
       songTitle.textContent = song.title;
       const songArtist = document.querySelector("#artist");
@@ -292,13 +310,57 @@ function buildSongRow(song){
       const speech = document.querySelector("#speechiness");
       const pop = document.querySelector("#popularity");
       bpm.textContent = "BPM: " +song.details.bpm;
-      energy.textContent = "Energy: "+song.analytics.energy;
-      dance.textContent = "Danceability: "+song.analytics.danceability;
-      live.textContent = "Liveness: "+song.analytics.liveness;
-      valence.textContent = "Valence: "+song.analytics.valence
-      acoustic.textContent = "Acousticness: "+song.analytics.acousticness
-      speech.textContent = "Speechiness: "+song.analytics.speechiness
-      pop.textContent = "Popularity: "+song.details.popularity
+
+      //Energy
+      energy.textContent = "Energy: ";
+      let energyBar = document.createElement(`progress`);
+      energyBar.setAttribute(`max`, 100);
+      energyBar.setAttribute(`value`, song.analytics.energy);
+      energy.appendChild(energyBar);
+
+      //Danceability
+      dance.textContent = "Danceability: ";
+      let danceabilityBar = document.createElement(`progress`);
+      danceabilityBar.setAttribute(`max`, 100);
+      danceabilityBar.setAttribute(`value`, song.analytics.danceability);
+      dance.appendChild(danceabilityBar);
+
+      //Liveness
+      live.textContent = "Liveness: ";
+      let livenessBar = document.createElement(`progress`);
+      livenessBar.setAttribute(`max`, 100);
+      livenessBar.setAttribute(`value`, song.analytics.liveness);
+      live.appendChild(livenessBar);
+
+      //Valence
+      valence.textContent = "Valence: ";
+      let valenceBar = document.createElement(`progress`);
+      valenceBar.setAttribute(`max`, 100);
+      valenceBar.setAttribute(`value`, song.analytics.valence);
+      valence.appendChild(valenceBar);
+
+      //Acousticness
+      acoustic.textContent = "Acousticness: ";
+      let acousticBar = document.createElement(`progress`);
+      acousticBar.setAttribute(`max`, 100);
+      acousticBar.setAttribute(`value`, song.analytics.acousticness);
+      acoustic.appendChild(acousticBar);
+
+      //Speechiness
+      speech.textContent = "Speechiness: ";
+      let speechBar = document.createElement(`progress`);
+      speechBar.setAttribute(`max`, 100);
+      speechBar.setAttribute(`value`, song.analytics.speechiness);
+      speech.appendChild(speechBar);
+
+      //Popularity
+      pop.textContent = "Popularity: ";
+      let popBar = document.createElement(`progress`);
+      popBar.setAttribute(`max`, 100);
+      popBar.setAttribute(`value`, song.details.popularity);
+      pop.appendChild(popBar);
+
+      //radarChart
       buildChart(song.details.bpm, song.analytics.energy, song.analytics.danceability, song.analytics.liveness, song.analytics.valence, song.analytics.acousticness, song.analytics.speechiness, song.details.popularity);
    })
    titleLink.textContent=song.title;
@@ -343,8 +405,13 @@ function buildViewSongButton(song){
       index = document.querySelector("#index");
       singleSong.hidden = false;
       index.hidden=true;
+
+      // calc duration
       const songLength = document.querySelector("#duration");
-      songLength.textContent=song.details.duration;
+      let minutes = (song.details.duration / 60).toFixed(0);
+      let seconds = (song.details.duration % 60);
+      songLength.textContent= `${minutes}:${seconds}`;
+
       const songTitle = document.querySelector("#titleSong");
       songTitle.textContent = song.title;
       const songArtist = document.querySelector("#artist");
@@ -362,13 +429,57 @@ function buildViewSongButton(song){
       const speech = document.querySelector("#speechiness");
       const pop = document.querySelector("#popularity");
       bpm.textContent = "BPM: " +song.details.bpm;
-      energy.textContent = "Energy: "+song.analytics.energy;
-      dance.textContent = "Danceability: "+song.analytics.danceability;
-      live.textContent = "Liveness: "+song.analytics.liveness;
-      valence.textContent = "Valence: "+song.analytics.valence
-      acoustic.textContent = "Acousticness: "+song.analytics.acousticness
-      speech.textContent = "Speechiness: "+song.analytics.speechiness
-      pop.textContent = "Popularity: "+song.details.popularity
+
+      //Energy
+      energy.textContent = "Energy: ";
+      let energyBar = document.createElement(`progress`);
+      energyBar.setAttribute(`max`, 100);
+      energyBar.setAttribute(`value`, song.analytics.energy);
+      energy.appendChild(energyBar);
+
+      //Danceability
+      dance.textContent = "Danceability: ";
+      let danceabilityBar = document.createElement(`progress`);
+      danceabilityBar.setAttribute(`max`, 100);
+      danceabilityBar.setAttribute(`value`, song.analytics.danceability);
+      dance.appendChild(danceabilityBar);
+
+      //Liveness
+      live.textContent = "Liveness: ";
+      let livenessBar = document.createElement(`progress`);
+      livenessBar.setAttribute(`max`, 100);
+      livenessBar.setAttribute(`value`, song.analytics.liveness);
+      live.appendChild(livenessBar);
+
+      //Valence
+      valence.textContent = "Valence: ";
+      let valenceBar = document.createElement(`progress`);
+      valenceBar.setAttribute(`max`, 100);
+      valenceBar.setAttribute(`value`, song.analytics.valence);
+      valence.appendChild(valenceBar);
+
+      //Acousticness
+      acoustic.textContent = "Acousticness: ";
+      let acousticBar = document.createElement(`progress`);
+      acousticBar.setAttribute(`max`, 100);
+      acousticBar.setAttribute(`value`, song.analytics.acousticness);
+      acoustic.appendChild(acousticBar);
+
+      //Speechiness
+      speech.textContent = "Speechiness: ";
+      let speechBar = document.createElement(`progress`);
+      speechBar.setAttribute(`max`, 100);
+      speechBar.setAttribute(`value`, song.analytics.speechiness);
+      speech.appendChild(speechBar);
+
+      //Popularity
+      pop.textContent = "Popularity: ";
+      let popBar = document.createElement(`progress`);
+      popBar.setAttribute(`max`, 100);
+      popBar.setAttribute(`value`, song.details.popularity);
+      pop.appendChild(popBar);
+
+      //radarChart
       buildChart(song.details.bpm, song.analytics.energy, song.analytics.danceability, song.analytics.liveness, song.analytics.valence, song.analytics.acousticness, song.analytics.speechiness, song.details.popularity);
    })
    
