@@ -8,6 +8,16 @@ let songArray = [];
 let apiArtistArray = [];
 let apiGenreArray = [];
 
+/** Due to JS seeing an object as unique even if the data is the same as another object
+ * filtering out duplicates is a bit more complex.
+ * I found out that I could use a map to filter out duplicates.
+ * Using this method I can get all required data from the API and eliminate the
+ * need to have the artist/genre JSON files, which i feel is more realistic.
+ * 
+ * Where I learned this --> codeburst.io/javascript-array-distinct-5edc93501dc4
+ * 
+ * @returns filtered array of artists
+ */
 function buildArtistArray(){
    const result = [];
    for (let s of songArray){
@@ -99,7 +109,7 @@ function loadData(){
 }
 
 
-
+// make playlist button
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
 showPlaylist.textContent = "Playlist";
@@ -109,6 +119,8 @@ showPlaylist.addEventListener("click", function(){
    index.hidden = true;
    playlist.hidden = false;
 })
+
+// make dropdown btn
 const drops = document.querySelectorAll(".dropbtn");
 for(const dropdown of drops){
 dropdown.addEventListener("mouseover", function(){
@@ -117,6 +129,8 @@ dropdown.addEventListener("mouseover", function(){
    options.classList.toggle("show");
 }
 })}
+
+//handle ddropdown click
 window.addEventListener("click", function(event) {
    if (!event.target.matches('.dropbtn')) {
      var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -128,7 +142,8 @@ window.addEventListener("click", function(event) {
        }
      }
    }
- })
+})
+
 header.appendChild(showPlaylist);
 const showNames = document.querySelectorAll("a[href='#groupNames']");
 for (let names of showNames){
@@ -144,6 +159,7 @@ const playlistHeader = document.querySelector("#playlistHeader")
 const songHeader = document.querySelector("#songHeader");
 const back = document.createElement("button");
 
+// close view btn
 back.textContent = "Close View";
 back.addEventListener("click", function(){
    const index = document.querySelector("#index");
@@ -200,6 +216,7 @@ const title = document.querySelector("input");
 //    genres.appendChild(option);
 // }
 
+// makes the artist ans genre drop down menu
 function buildDropdowns(){
    
    // Populates the artist drop down
@@ -219,6 +236,8 @@ function buildDropdowns(){
       genres.appendChild(option);
    }
 }
+
+// detect changes in dropdown menus // title input
 genres.addEventListener("change", populateGenre);
 artists.addEventListener("change", populateArtist);
 title.addEventListener("input", populateTitle);
