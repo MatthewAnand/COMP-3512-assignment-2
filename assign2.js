@@ -7,19 +7,6 @@ const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.
 const songArray = [];
 let apiArtistArray = [];
 let apiGenreArray = [];
-// // get song data from api and put into songArray
-// fetch(`${api}`)
-// .then(resp => resp.json())
-// .then(songs => {
-//     console.log(`DATA FETCHED`);
-//     // populate songArray
-//     for(let s of songs){
-//       songArray.push(s);
-//       }
-//       apiArtistArray = buildArtistArray();
-//       apiGenreArray = buildGenreArray();
-
-// });
 
 function buildArtistArray(){
    const result = [];
@@ -62,14 +49,11 @@ function buildGenreArray(){
    Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
    use built-in Live Preview.
 */
-// const artistArray = JSON.parse(artistString);
-// const genreArray = JSON.parse(genreString);
-
 
 
 document.addEventListener('DOMContentLoaded', function(){
 
-   // get song data from api and put into songArray
+// get song data from api and put into songArray
 function getApiData(api){
    fetch(`${api}`)
    .then(resp => resp.json())
@@ -81,7 +65,8 @@ function getApiData(api){
       }
       apiArtistArray = buildArtistArray();
       apiGenreArray = buildGenreArray();
-   });
+   })
+   .then(fuction => buildDropdowns());
 }
 
 /**
@@ -91,12 +76,14 @@ function getApiData(api){
  * 
  * I think this needs to be changed to somthing with either async
  * or callbacks.
+ * 
+ * THIS ISSUE HAS BEEN RESOLVED
  */
 function loadData(){
    getApiData(api);
-   setTimeout(()=>{
-      buildDropdowns();
-   },500);
+   // setTimeout(()=>{
+   //    buildDropdowns();
+   // },500);
 }
 
 
