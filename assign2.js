@@ -7,19 +7,19 @@ const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.
 const songArray = [];
 let apiArtistArray = [];
 let apiGenreArray = [];
-// get song data from api and put into songArray
-fetch(`${api}`)
-.then(resp => resp.json())
-.then(songs => {
-    console.log(`DATA FETCHED`);
-    // populate songArray
-    for(let s of songs){
-      songArray.push(s);
-      }
-      apiArtistArray = buildArtistArray();
-      apiGenreArray = buildGenreArray();
+// // get song data from api and put into songArray
+// fetch(`${api}`)
+// .then(resp => resp.json())
+// .then(songs => {
+//     console.log(`DATA FETCHED`);
+//     // populate songArray
+//     for(let s of songs){
+//       songArray.push(s);
+//       }
+//       apiArtistArray = buildArtistArray();
+//       apiGenreArray = buildGenreArray();
 
-});
+// });
 
 function buildArtistArray(){
    const result = [];
@@ -62,12 +62,45 @@ function buildGenreArray(){
    Some possibilities: if using Visual Code, use Live Server extension; if Brackets,
    use built-in Live Preview.
 */
-const artistArray = JSON.parse(artistString);
-const genreArray = JSON.parse(genreString);
+// const artistArray = JSON.parse(artistString);
+// const genreArray = JSON.parse(genreString);
 
 
 
 document.addEventListener('DOMContentLoaded', function(){
+
+   // get song data from api and put into songArray
+function getApiData(api){
+   fetch(`${api}`)
+   .then(resp => resp.json())
+   .then(songs => {
+   console.log(`DATA FETCHED`);
+   // populate songArray
+   for(let s of songs){
+      songArray.push(s);
+      }
+      apiArtistArray = buildArtistArray();
+      apiGenreArray = buildGenreArray();
+   });
+}
+
+/**
+ * this makes sure that the dropdowns are populated 500ms after
+ * getApiData is called. without it the dropdowns get built before
+ * the data is loaded.
+ * 
+ * I think this needs to be changed to somthing with either async
+ * or callbacks.
+ */
+function loadData(){
+   getApiData(api);
+   setTimeout(()=>{
+      buildDropdowns();
+   },500);
+}
+
+
+
 const header = document.querySelector("header");
 const showPlaylist = document.createElement("button");
 showPlaylist.textContent = "Playlist";
@@ -150,25 +183,46 @@ const artists = document.querySelector("#artists");
 const genres = document.querySelector("#genres");
 const title = document.querySelector("input");
 
-// Populates the artist drop down
-for(let a of artistArray){
-   const option = document.createElement("option");
-   option.value=a.id;
-   option.textContent=a.name;
-   option.dataset.id=a.id;
-   artists.appendChild(option);
-}
-artists.addEventListener("change", populateArtist);
+// // Populates the artist drop down
+// for(let a of artistArray){
+//    const option = document.createElement("option");
+//    option.value=a.id;
+//    option.textContent=a.name;
+//    option.dataset.id=a.id;
+//    artists.appendChild(option);
+// }
+// artists.addEventListener("change", populateArtist);
 
-// Populates the genre drop down
-for(let a of genreArray){
-   const option = document.createElement("option");
-   option.value=a.id;
-   option.textContent=a.name;
-   option.dataset.id=a.id;
-   genres.appendChild(option);
+// // Populates the genre drop down
+// for(let a of genreArray){
+//    const option = document.createElement("option");
+//    option.value=a.id;
+//    option.textContent=a.name;
+//    option.dataset.id=a.id;
+//    genres.appendChild(option);
+// }
+
+function buildDropdowns(){
+   
+   // Populates the artist drop down
+      for(let a of apiArtistArray){
+      const option = document.createElement("option");
+      option.value=a.id;
+      option.textContent=a.name;
+      option.dataset.id=a.id;
+      artists.appendChild(option);
+   }
+      // Populates the genre drop down
+   for(let a of apiGenreArray){
+      const option = document.createElement("option");
+      option.value=a.id;
+      option.textContent=a.name;
+      option.dataset.id=a.id;
+      genres.appendChild(option);
+   }
 }
 genres.addEventListener("change", populateGenre);
+artists.addEventListener("change", populateArtist);
 title.addEventListener("input", populateTitle);
 
 //adds the clear button to the playlist
@@ -183,6 +237,8 @@ removeAll.textContent = "Clear Playlist";
 removeAll.addEventListener("click", replaceTable)
 const options = document.querySelector("#buttonPlaylist");
 options.appendChild(removeAll);
+
+loadData();
 
 }); // end of DOMContentLoaded EventListener
 
@@ -621,6 +677,3 @@ function buildChart(bpm, energy, dance, live, valence, acoustic, speech, pop){
           },
        });
 }
-
-
-
