@@ -222,5 +222,14 @@ li{
   max-width:99%;
 }
 
+#dataList li {
+  text-align: left;
+}
+
+#dataList li progress {
+  align: right;
+
+}
+
 
 

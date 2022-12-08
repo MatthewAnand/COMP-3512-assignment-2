@@ -367,7 +367,7 @@ function buildSongRow(song){
       bpm.textContent = "BPM: " +song.details.bpm;
 
       //Energy
-      energy.textContent = "Energy: ";
+      energy.textContent = "Energy: \u00A0 \u00A0 \u00A0\u00A0\u00A0\u00A0 ";
       let energyBar = document.createElement(`progress`);
       energyBar.setAttribute(`max`, 100);
       energyBar.setAttribute(`value`, song.analytics.energy);
@@ -381,14 +381,14 @@ function buildSongRow(song){
       dance.appendChild(danceabilityBar);
 
       //Liveness
-      live.textContent = "Liveness: ";
+      live.textContent = "Liveness:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00a0";
       let livenessBar = document.createElement(`progress`);
       livenessBar.setAttribute(`max`, 100);
       livenessBar.setAttribute(`value`, song.analytics.liveness);
       live.appendChild(livenessBar);
 
       //Valence
-      valence.textContent = "Valence: ";
+      valence.textContent = "Valence:\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0";
       let valenceBar = document.createElement(`progress`);
       valenceBar.setAttribute(`max`, 100);
       valenceBar.setAttribute(`value`, song.analytics.valence);
@@ -402,14 +402,14 @@ function buildSongRow(song){
       acoustic.appendChild(acousticBar);
 
       //Speechiness
-      speech.textContent = "Speechiness: ";
+      speech.textContent = "Speechiness: \u00a0\u00a0";
       let speechBar = document.createElement(`progress`);
       speechBar.setAttribute(`max`, 100);
       speechBar.setAttribute(`value`, song.analytics.speechiness);
       speech.appendChild(speechBar);
 
       //Popularity
-      pop.textContent = "Popularity: ";
+      pop.textContent = "Popularity: \u00a0\u00a0\u00a0\u00a0\u00a0";
       let popBar = document.createElement(`progress`);
       popBar.setAttribute(`max`, 100);
       popBar.setAttribute(`value`, song.details.popularity);
@@ -486,7 +486,7 @@ function buildViewSongButton(song){
       bpm.textContent = "BPM: " +song.details.bpm;
 
       //Energy
-      energy.textContent = "Energy: ";
+      energy.textContent = "Energy: \u00A0 \u00A0 \u00A0\u00A0\u00A0\u00A0 ";
       let energyBar = document.createElement(`progress`);
       energyBar.setAttribute(`max`, 100);
       energyBar.setAttribute(`value`, song.analytics.energy);
@@ -500,14 +500,14 @@ function buildViewSongButton(song){
       dance.appendChild(danceabilityBar);
 
       //Liveness
-      live.textContent = "Liveness: ";
+      live.textContent = "Liveness:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00a0";
       let livenessBar = document.createElement(`progress`);
       livenessBar.setAttribute(`max`, 100);
       livenessBar.setAttribute(`value`, song.analytics.liveness);
       live.appendChild(livenessBar);
 
       //Valence
-      valence.textContent = "Valence: ";
+      valence.textContent = "Valence:\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0";
       let valenceBar = document.createElement(`progress`);
       valenceBar.setAttribute(`max`, 100);
       valenceBar.setAttribute(`value`, song.analytics.valence);
@@ -521,14 +521,14 @@ function buildViewSongButton(song){
       acoustic.appendChild(acousticBar);
 
       //Speechiness
-      speech.textContent = "Speechiness: ";
+      speech.textContent = "Speechiness: \u00a0\u00a0";
       let speechBar = document.createElement(`progress`);
       speechBar.setAttribute(`max`, 100);
       speechBar.setAttribute(`value`, song.analytics.speechiness);
       speech.appendChild(speechBar);
 
       //Popularity
-      pop.textContent = "Popularity: ";
+      pop.textContent = "Popularity: \u00a0\u00a0\u00a0\u00a0\u00a0";
       let popBar = document.createElement(`progress`);
       popBar.setAttribute(`max`, 100);
       popBar.setAttribute(`value`, song.details.popularity);
