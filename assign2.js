@@ -4,7 +4,7 @@
 /* url of song api --- https versions hopefully a little later this semester */	
 const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
-const songArray = [];
+let songArray = [];
 let apiArtistArray = [];
 let apiGenreArray = [];
 
@@ -55,18 +55,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // get song data from api and put into songArray
 function getApiData(api){
-   fetch(`${api}`)
-   .then(resp => resp.json())
-   .then(songs => {
-   console.log(`DATA FETCHED`);
-   // populate songArray
-   for(let s of songs){
-      songArray.push(s);
-      }
+      // check if in local storage
+   if(!localStorage.getItem('songsData')){
+      // if not in local storage, fetch from server
+      fetch(`${api}`)
+      .then(resp => resp.json())
+      .then(songs => {
+         console.log(`DATA FETCHED`);
+         // populate songArray
+         for(let s of songs){
+            songArray.push(s);
+         }
+         apiArtistArray = buildArtistArray();
+         apiGenreArray = buildGenreArray();
+         const jsonData = JSON.stringify(songArray)
+         localStorage.setItem("songsData",jsonData)
+      })
+      .then(fuction => buildDropdowns());
+   }else{ // data found in local, process it
+      console.log('data found in local')
+      songArray = JSON.parse(localStorage.getItem('songsData'));
       apiArtistArray = buildArtistArray();
       apiGenreArray = buildGenreArray();
-   })
-   .then(fuction => buildDropdowns());
+      buildDropdowns();
+   }
 }
 
 /**
