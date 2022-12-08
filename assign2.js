@@ -112,8 +112,7 @@ showPlaylist.addEventListener("click", function(){
 })
 const drops = document.querySelectorAll(".dropbtn");
 for(const dropdown of drops){
-dropdown.addEventListener("click", function(){
-   console.log("hello");
+dropdown.addEventListener("mouseover", function(){
    dropMenu = document.querySelectorAll("#myDropdown")
    for (const options of dropMenu){
    options.classList.toggle("show");
